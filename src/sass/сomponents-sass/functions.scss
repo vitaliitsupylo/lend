@@ -1,0 +1,7 @@
+@function rem($px) {
+   @return ($px/$one-rem)+rem;
+}
+
+@function url_css($url) {
+   @return url($url-path+$url);
+}

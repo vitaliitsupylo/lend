@@ -1,0 +1,333 @@
+body {
+  font: 400 rem(18px)/1.4 $fontMain;
+  background-color: #fafafa;
+}
+
+.container {
+  width: rem(100%);
+  max-width: rem(1450px);
+  padding: 0 rem(5px);
+  margin: auto;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  max-width: rem(469px);
+  input {
+    width: 100%;
+    border: rem(1px) solid #bdc3d3;
+    height: rem(62px);
+    border-radius: 0;
+    padding-left: rem(62px);
+    color: #7280a2;
+    font-size: rem(18px);
+    font-weight: 400;
+    font-family: $fontMain;
+    transition: border .35s;
+  }
+  .input_icon {
+    position: absolute;
+    left: rem(20px);
+    font-size: rem(26px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d3daeb;
+    line-height: 1;
+    z-index: 1;
+  }
+  .placeholder {
+    position: absolute;
+    transform: translateY(-50%);
+    line-height: 1;
+    top: 50%;
+    overflow: hidden;
+    left: rem(62px);
+    color: #7280a2;
+    z-index: 3;
+    transition: .35s;
+    font-size: rem(18px);
+    font-weight: 400;
+    font-family: $fontMain;
+  }
+  &.focus {
+    input {
+      border-color: $colorBlue;
+    }
+    .placeholder {
+      top: rem(-4px);
+      color: $colorBlue;
+      font-weight: 700;
+      font-size: rem(16px);
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid rem(3px) $colorBlue;
+  border-radius: 0;
+  color: #e6e7ec;
+  font: 700 rem(20px)/1 $fontMain;
+  height: rem(54px);
+  transition: color .4s;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0 rem(15px);
+  min-width: rem(220px);
+  text-transform: uppercase;
+  span {
+    position: relative;
+    z-index: 3;
+  }
+  &::before, &::after {
+    @include before_fig(33.33%, 100%, $colorBlue);
+    z-index: 1;
+    bottom: 0;
+    transition: height .4s;
+  }
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+  i {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 33.33%;
+    width: 33.34%;
+    height: 100%;
+    transition: height .4s;
+    background-color: $colorBlue;
+  }
+  &:hover {
+    i, &::before, &::after {
+      height: 0;
+    }
+    color: $colorBlue;
+  }
+  &.revens {
+    background-color: $colorBlue;
+    color: $colorBlue;
+    &::before, &::after, i {
+      background-color: #fff;
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.main {
+  padding: rem(63px) 0 rem(100px);
+}
+
+.title_block {
+  display: block;
+  padding: rem(20px) rem(10px) rem(20px) rem(95px);
+  border-bottom: solid rem(2px) #eef1f8;
+  font-size: rem(20px);
+  color: $colorBlue;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+select {
+  -webkit-appearance: none;
+  background-position: right center;
+  background-repeat: no-repeat;
+  line-height: 1em;
+  width: rem(210px);
+  height: rem(60px);
+  border: rem(1px) solid #bdc3d3;
+  padding: 0 rem(15px) 0 rem(27px);
+  border-radius: 0;
+  color: #2b3035;
+  font: 400 rem(18px)/1.1 $fontMain;
+  background-image: url_css('img/select.png');
+  background-position: 94% center;
+  background-repeat: no-repeat;
+  /* for FF */
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* for IE */
+  -ms-appearance: none;
+  appearance: none !important;
+  /*for WebKit*/
+  -webkit-appearance: none;
+  /* for FF */
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* for IE */
+  -ms-appearance: none;
+  appearance: none !important;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: rem(37px);
+    height: rem(37px);
+    color: $colorBlue;
+    border-radius: 50%;
+    margin: 0 rem(1px);
+    font-weight: 700;
+    border: rem(2px) solid transparent;
+    transition: border .35s;
+    &.active, &:hover {
+      border: rem(2px) solid $colorBlue;
+
+    }
+  }
+}
+
+.main_wrap {
+  box-shadow: 0 rem(1px) rem(3px) rgba(9, 55, 164, 0.16);
+  background-color: #fff;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  max-width: rem(300px);
+  height: rem(52px);
+  border: 1px solid #bdc3d3;
+  font: 400 rem(18px)/1.4 $fontMain;
+  padding: 0 rem(28px) 0 rem(20px);
+  background-color: #fff;
+  border-radius: 0;
+}
+
+.input_elem_title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  label {
+    padding: 0 rem(5px) 0 rem(25px);
+    color: $colorBlue;
+    font: 400 rem(18px)/1.2 $fontMain;
+    margin-bottom: rem(15px);
+  }
+  input, select {
+    height: rem(52px);
+  }
+}
+
+.btn_dote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
+  border: rem(2px) solid #dee3f0;
+  width: rem(38px);
+  height: rem(38px);
+  color: #d3daeb;
+  cursor: pointer;
+  font-size: rem(18px);
+  transition: border .35s, color .35s;
+  i {
+    font-size: rem(18px);
+  }
+  &:hover, &.active {
+    border-color: $colorBlue;
+    color: $colorBlue;
+  }
+}
+
+.gray_background {
+  background-color: #e1e4ee;
+}
+
+.file_upload {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 0;
+  padding: 0 rem(30px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid rem(3px) $colorBlue;
+  border-radius: 0;
+  color: #e6e7ec;
+  font: 700 rem(20px)/1 $fontMain;
+  height: rem(60px);
+  transition: color .4s;
+  background-color: transparent;
+  width: 100%;
+  max-width: rem(265px);
+  text-transform: uppercase;
+  input[type="file"] {
+    display: none;
+  }
+  .text_file_upload {
+    position: relative;
+    z-index: 3;
+  }
+  &::before, &::after {
+    @include before_fig(33.33%, 100%, $colorBlue);
+    z-index: 1;
+    bottom: 0;
+    transition: height .4s;
+  }
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+  i {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 33.33%;
+    width: 33.34%;
+    height: 100%;
+    transition: height .4s;
+    background-color: $colorBlue;
+  }
+  &:hover {
+    i, &::before, &::after {
+      height: 0;
+    }
+    color: $colorBlue;
+  }
+  &.revens {
+    background-color: $colorBlue;
+    color: $colorBlue;
+    &::before, &::after, i {
+      background-color: #fff;
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
+}
