@@ -1,0 +1,58 @@
+.vjs-poster {
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-color: #000000;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  transform: scale(1);
+  transition: visibility .45s, opacity .45s, transform .45s;
+  z-index: 5;
+}
+
+// Used for IE8 fallback
+.vjs-poster img {
+  display: block;
+  vertical-align: middle;
+  margin: 0 auto;
+  max-height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+// Hide the poster after the video has started playing
+.vjs-has-started .vjs-poster {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.2);
+}
+
+// Don't hide the poster if we're playing audio
+.vjs-audio.vjs-has-started .vjs-poster {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.video-js.vjs-paused {
+  .vjs-poster {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+}
+
+.vjs-using-native-controls .vjs-poster {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.2);
+}

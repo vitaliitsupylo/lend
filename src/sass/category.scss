@@ -1,0 +1,612 @@
+.scroll_category_wrap {
+  width: 100%;
+  position: relative;
+  .scroll_content_one {
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: rem(1067px);
+    padding: rem(80px) rem(115px);
+    overflow: hidden;
+    box-shadow: 0 rem(5px) rem(98px) rgba(8, 8, 8, 0.05);
+    .scroll_content_title {
+      font-size: rem(40px);
+      margin-bottom: rem(40px);
+      color: #333b50;
+      font-weight: 700;
+    }
+    span {
+      color: #333b50;
+      width: 100%;
+      text-align: center;
+      display: block;
+      font-size: rem(20px);
+      b {
+        font-weight: 700;
+        font-size: rem(40px);
+      }
+    }
+    .text_right {
+      width: 100%;
+      text-align: right;
+    }
+    .margin_bottom {
+      margin-bottom: rem(80px);
+    }
+    p {
+      color: #132025;
+      margin-bottom: rem(50px);
+      font-size: rem(24px);
+      line-height: 1.5;
+      position: relative;
+      z-index: 2;
+      b,
+      span {
+        font-weight: 700;
+      }
+    }
+    ul,
+    ol {
+      margin-bottom: rem(35px);
+      position: relative;
+      z-index: 2;
+      li {
+        font-size: rem(18px);
+        margin-bottom: rem(10px);
+      }
+    }
+    ol {
+      counter-reset: item;
+      li {
+        &::before {
+          content: counter(item) ".";
+          counter-increment: item;
+          margin-right: rem(8px);
+        }
+      }
+    }
+    .ellips {
+      position: absolute;
+      right: -27%;
+      height: 80%;
+      width: auto;
+      z-index: 1;
+      opacity: .05;
+      bottom: -8.5%;
+    }
+    &.animation {
+      &::before {
+        @include before_fig(100%, 100%, #f5f7fb);
+        width: 0;
+        transition: .3s;
+        height: 100%;
+        z-index: 5;
+        bottom: 0;
+        left: 0;
+      }
+      .ellips {
+        stroke-dasharray: 11841.24;
+        stroke-dashoffset: 11841.24;
+      }
+      p,
+      ol,
+      ul,
+      span,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        transition: opacity .3s;
+        opacity: 0;
+      }
+      &.active {
+        &::before {
+          transition: width .6s, height .6s .8s;
+          width: 100%;
+          height: 0;
+        }
+        p,
+        ol,
+        ul,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          transition: opacity .1s .65s;
+          opacity: 1;
+        }
+        .ellips {
+          transition: 8s 1.1s;
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+  }
+
+  .scroll_element {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    transition: opacity .2s;
+    left: 0;
+    padding: rem(50px) rem(100px) rem(20px);
+    &:nth-child(even) {
+      align-items: flex-end;
+      .scroll_content_one {
+        .ellips {
+          right: auto;
+          left: -27%;
+        }
+      }
+      .scroll_element_top {
+        padding-left: 0;
+        padding-right: rem(140px);
+        text-align: right;
+        .title_round {
+          right: auto;
+          left: rem(-63px);
+        }
+        &::before {
+          left: auto;
+          right: rem(-100px);
+        }
+        &.animation {
+          .scroll_element_title {
+            left: auto;
+            right: rem(-40px);
+          }
+          &.active {
+            .scroll_element_title {
+              right: 0;
+            }
+          }
+        }
+      }
+      .scroll_content_two {
+        right: auto;
+        left: 0;
+      }
+    }
+  }
+
+  .scroll_content_two {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    width: 47%;
+    right: 0;
+    img {
+      width: 120%;
+      height: 120%;
+      position: absolute;
+      top: -15%;
+      left: -10%;
+      object-fit: cover;
+    }
+    &.animation {
+      img {
+        transition: opacity .3s;
+        opacity: 0;
+      }
+      &::before {
+        @include before_fig(100%, 100%, #f5f7fb);
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 0;
+        transition: .3s;
+        z-index: 5;
+      }
+      &.active {
+        img {
+          transition: opacity .1s 1.7s;
+          opacity: 1;
+        }
+        &::before {
+          transition: height .6s 1.1s, width .6s 1.8s;
+          height: 100%;
+          width: 0;
+        }
+      }
+    }
+  }
+}
+
+.scroll_element_top {
+  margin-bottom: rem(110px);
+  padding-left: rem(140px);
+  position: relative;
+  display: flex;
+  z-index: 3;
+  transition: .1s;
+  max-width: rem(575px);
+  align-items: center;
+  text-align: left;
+  .title_round {
+    width: rem(44px);
+    height: rem(44px);
+    position: absolute;
+    right: rem(-63px);
+    top: calc(50% - 1.375rem);
+    border-radius: 50%;
+    &::before {
+      @include before_fig(rem(16px), rem(16px), $blue-color);
+      top: rem(14px);
+      left: rem(14px);
+      border-radius: 50%;
+    }
+    &::after {
+      @include before_fig(100%, 100%, transparent);
+      border: solid rem(3px) $blue-color;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+    }
+  }
+  &::before {
+    @include before_fig(rem(200px), rem(3px), $blue-color);
+    left: rem(-100px);
+    top: calc(50% - .09375);
+  }
+  &.animation {
+    &::before {
+      transition: width .3s;
+      width: 0;
+    }
+    .scroll_element_title {
+      transition: .3s;
+      opacity: 0;
+      position: relative;
+      left: rem(-40px);
+    }
+    .title_round {
+      &::before,
+      &::after {
+        transition: transform .3s, opacity .3s;
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+    &.active {
+      &::before {
+        width: rem(200px);
+      }
+      .scroll_element_title {
+        transition: .4s .2s;
+        opacity: 1;
+        left: 0;
+      }
+      .title_round {
+        &::before {
+          transition: opacity .2s .6s, transform .3s .6s;
+          opacity: 1;
+          transform: scale(1);
+        }
+        &::after {
+          transition: opacity .3s .7s, transform .5s .7s;
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
+
+.last_category {
+  padding-top: rem(265px);
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: rem(750px);
+    z-index: 1;
+    position: absolute;
+    background-image: linear-gradient(-61deg, #eaf0ff 0%, #ffffff 100%);
+  }
+}
+
+.scroll_element_title {
+  color: #132025;
+  font-size: rem(40px);
+  font-weight: 700;
+  letter-spacing: rem(.8px);
+  margin-right: rem(19px);
+  line-height: 1.2;
+}
+
+.control {
+  position: absolute;
+  right: rem(220px);
+  top: 0;
+  z-index: 10;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: rem(22px);
+  .control_list {
+    display: flex;
+    flex-direction: column;
+  }
+  .control_elem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .control_dote {
+      cursor: pointer;
+      width: rem(22px);
+      height: rem(22px);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: solid rem(1px) transparent;
+      margin: rem(3px) 0;
+      transition: 1s;
+      &::before {
+        @include before_fig(rem(8px), rem(8px), #fff);
+        border-radius: 50%;
+      }
+    }
+    .control_dote_line {
+      display: block;
+      background-color: #fff;
+      width: rem(3px);
+      height: 0;
+      margin: 0;
+      transition: 1s;
+      border-radius: rem(3px);
+    }
+    &.active {
+      .control_dote {
+        border-color: #fff;
+      }
+      .control_dote_line {
+        height: rem(300px);
+        margin: rem(10px) 0;
+      }
+    }
+  }
+  //.down_wrap {
+  //  position: absolute;
+  //  top: 100%;
+  //  left: -46%;
+  //}
+  &.fix_dote {
+    position: fixed;
+  }
+  &.absolute_bottom {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.category_top {
+  padding: rem(150px) 0 rem(120px);
+  .top_section {
+    position: relative;
+    max-width: rem(1200px);
+    margin: 0 auto rem(200px);
+    &::before {
+      width: 40%;
+      height: 100%;
+      left: 14%;
+      top: 0;
+    }
+    &.animation {
+      .title_text {
+        opacity: 0;
+        left: -3.125rem;
+      }
+      &::before {
+        left: -16%;
+        opacity: 0;
+      }
+
+      &.active {
+        .title_text {
+          transition: opacity .4s, left .4s;
+          opacity: 1;
+          left: 0;
+        }
+        &::before {
+          transition: opacity .8s .4s, left .8s .4s;
+          opacity: 1;
+          left: 12%;
+        }
+      }
+    }
+    &.no_mar_bot {
+      margin-bottom: rem(100px);
+    }
+  }
+  &.no_pad_bot {
+    padding-bottom: 0;
+  }
+
+}
+
+.category_top_text {
+  display: flex;
+  .category_text_left {
+    width: 100%;
+    position: relative;
+    flex: 1 1 55%;
+    padding: rem(110px) rem(130px) rem(110px) rem(300px);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20%;
+      width: 100%;
+      height: 67%;
+      left: 0;
+      display: block;
+      z-index: 1;
+      background-image: linear-gradient(-42deg, rgba(234, 240, 255, 0.48) 0%, #ffffff 100%);
+    }
+  }
+  .category_img_right {
+    width: 100%;
+    flex: 1 1 45%;
+    position: relative;
+    overflow: visible;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &.revers {
+    flex-direction: row-reverse;
+  }
+}
+
+.category_text_wrap {
+  position: relative;
+  z-index: 3;
+  padding-bottom: rem(80px);
+  font-size: rem(24px);
+  color: #333b50;
+  ul {
+    margin-bottom: rem(30px);
+    li {
+      font-size: rem(20px);
+      position: relative;
+      z-index: 2;
+      font-weight: 300;
+      margin-bottom: rem(5px);
+      text-indent: rem(16px);
+      b, strong, span {
+        font-weight: 700;
+      }
+      &:before {
+        @include before_fig(rem(6px), rem(2px), #132025);
+        left: 0;
+        top: rem(16px);
+      }
+    }
+  }
+  ol {
+    margin-bottom: rem(30px);
+    counter-reset: itemli;
+    li {
+      font-size: rem(20px);
+      position: relative;
+      z-index: 2;
+      font-weight: 300;
+      margin-bottom: rem(5px);
+      text-indent: rem(16px);
+      b, strong, span {
+        font-weight: 700;
+      }
+      &:before {
+        content: counter(itemli) ".";
+        counter-increment: itemli;
+        margin-right: rem(3px);
+        color: $blue-color;
+      }
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: rem(30px);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: rem(35px);
+  }
+  p {
+    padding-bottom: rem(30px);
+    line-height: 1.5;
+    b, strong, span {
+      font-weight: 700;
+    }
+  }
+}
+
+.category_top_video {
+  display: flex;
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    top: rem(-100px);
+    right: 0;
+    position: absolute;
+    width: rem(530px);
+    height: 70%;
+    z-index: 1;
+    background-image: linear-gradient(-259deg, rgba(234, 240, 255, 0.48) 0%, #ffffff 100%);
+  }
+}
+
+.category_top_left {
+  width: 100%;
+  position: relative;
+  flex: 1 1 40%;
+  z-index: 2;
+  max-width: rem(817px);
+  padding: 0 rem(115px) rem(110px) rem(220px);
+  .category_video_content {
+    position: relative;
+    z-index: 3;
+    padding-bottom: rem(80px);
+    font-size: rem(24px);
+    color: #333b50;
+    p {
+      padding-bottom: rem(30px);
+      line-height: 1.5;
+      b, strong, span {
+        font-weight: 700;
+      }
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 9%;
+    width: 100%;
+    height: 67%;
+    left: 0;
+    display: block;
+    z-index: 1;
+    background-image: linear-gradient(-42deg, rgba(234, 240, 255, 0.48) 0%, #ffffff 100%);
+  }
+}
+
+.category_video_right {
+  width: 100%;
+  flex: 1 1 45%;
+  max-width: rem(885px);
+  height: rem(590px);
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+  video, .video-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-js {
+    overflow: hidden;
+  }
+}

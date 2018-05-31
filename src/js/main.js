@@ -5,139 +5,102 @@
     /*
     *Variables****************************************************************
     * */
-    /*input*/
-    const arrInput = document.querySelectorAll('.input');
-    /*menu*/
-    const menu = document.getElementById('menu_wrap');
-    /*menu user*/
-    const menuUser = document.querySelector('.header_right');
-    /*search*/
-    const arrSearch = document.querySelectorAll('.search');
-    /*table*/
-    const arrTable = document.querySelectorAll('.table_site');
-    /*calendar*/
-    const flatpickr = require("flatpickr");
-    /*services*/
-    const servicesElem = document.querySelectorAll('.services_elem');
-    /*text editor*/
-    const editorWrap = document.querySelectorAll('.editor_wrap');
-    /*translit*/
-    const translitSet = document.querySelectorAll('.translitSet');
-    const translitResult = document.querySelectorAll('.translitResult');
-    /*add photo*/
-    const imagesAdd = document.querySelectorAll('.images_add_elem');
-    /*popup info*/
-    const popupInfo = document.querySelectorAll('.popup_info');
-    /*number mask*/
-    const inputNumber = document.querySelectorAll('.input_number');
-    /*cropper img*/
-    const cropperWrap = document.querySelector('.cropper_wrap');
-    /*readonly*/
-    const arrReadonly = document.querySelectorAll('.readonly');
-    /*cropper get*/
-    const cropperWrapGet = document.querySelectorAll('.cropperWrapGet');
-    /*slider*/
-    const slider = document.querySelector('.slider_edit_wrap');
+    /*load*/
+    const arrImg = document.querySelectorAll('img');
+    /*header*/
+    const header = document.querySelector('.header_main');
+    /*animation*/
+    const arrAnimation = document.querySelectorAll('.animation');
+    /*scroll all*/
+    const scrollAnimation = document.querySelectorAll('.scroll_animation');
+    let heightWindow = window.innerHeight;
+    const hiddenScroll = require('./modules/function/hiddenScroll');
+    /*nav*/
+    const btnNav = document.querySelector('.header_main .menu');
+    const navList = document.querySelector('.navigation');
+    /*calc*/
+    const calcWrap = document.querySelector('.calc');
+    // const numericField = document.querySelectorAll('.numeric_field');
+
 
     /*
     * Implementation****************************************************************
     * */
 
-    /*input*/
-    if (arrInput.length > 0) {
-        (require('./modules/input'))(arrInput);
+    /*load*/
+    if (arrImg.length > 0) {
+        hiddenScroll(true);
+        (require('./modules/loader'))(arrImg, header);
     }
 
-    /*menu*/
-    if (menu !== null) {
-        (require('./modules/menu'))(menu,);
+    /*scroll header*/
+    let scrollHeader = null;
+    if (header !== null) {
+        scrollHeader = require('./modules/function/scrollMenu');
+        scrollHeader(header);
     }
-    /*menu user*/
-    if (menuUser !== null) {
-        (require('./modules/menuUser'))(menuUser);
-    }
-
-    /*search*/
-    if (arrSearch.length > 0) {
-        (require('./modules/search'))(arrSearch);
-    }
-
-    /*table*/
-    if (arrTable.length > 0) {
-        (require('./modules/table'))(arrTable);
-    }
-
-    /*services*/
-    if (servicesElem.length > 0) {
-        (require('./modules/services'))(servicesElem);
-    }
-
-    /*text editor*/
-    if (editorWrap.length > 0) {
-        (require('./modules/editor'))(editorWrap);
-    }
-
-    /*calendar*/
-    const Russian = require("flatpickr/dist/l10n/ru.js").default.ru;
-    flatpickr('.calendar', {
-        dateFormat: "d.m.Y",
-        locale: Russian
-    });
-
-    flatpickr('.calendar_time', {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: true,
-        minDate: "09:00",
-        maxDate: "22:00",
-        locale: Russian
-    });
-
-    /*translit*/
-    if (translitSet.length > 0) {
-        (require('./modules/translitSet'))(translitSet, translitResult);
-    }
-
-    /*add photo*/
-    if (imagesAdd.length > 0) {
-        (require('./modules/addPhoto'))(imagesAdd);
-    }
-
-    /*popup info*/
-    if (popupInfo.length > 0) {
-        (require('./modules/popupInfo'))(popupInfo);
+    /*animation*/
+    let addAnimation = null;
+    if (arrAnimation.length > 0) {
+        addAnimation = require('./modules/function/animation');
+        addAnimation(arrAnimation);
     }
 
 
-    /*phone mask*/
-    if (inputNumber.length > 0) {
-        let vanillaTextMask = require('vanilla-text-mask');
-
-        let numberMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
-
-        for (let i = 0; i < inputNumber.length; i++) {
-            vanillaTextMask.maskInput({
-                inputElement: inputNumber[i],
-                mask: numberMask,
-                keepCharPositions: true,
-                guide: false
-            });
+    /*scroll all*/
+    let scrollFunc = null;
+    if (scrollAnimation.length > 0) {
+        scrollFunc = require('./modules/scrollAnimation');
+        for (let i = 0; i < scrollAnimation.length; i++) {
+            scrollFunc(scrollAnimation, heightWindow);
         }
     }
-    /*readonly*/
-    if (arrReadonly.length > 0) {
-        (require('./modules/readonly'))(arrReadonly);
-    }
 
-    /*cropper Wrap Get*/
-    if (cropperWrapGet.length > 0) {
-        (require('./modules/cropperWrapGet'))(cropperWrapGet);
-    }
+    /*nav open*/
+    btnNav.addEventListener('click', function () {
+        this.classList.toggle('active');
+        navList.classList.toggle('active');
+        hiddenScroll(this.classList.contains('active'));
 
-    /*slider*/
-    if (slider !== null) {
-        (require('./modules/slider'))(slider);
+    });
+    /*calc*/
+    if (calcWrap !== null) {
+        (require('./modules/calc'))(calcWrap);
+    }
+    /*video js*/
+    const videoJs = require('video.js');
+    const videoJsYoutube = require('videojs-youtube');
+
+
+    window.addEventListener('scroll', () => {
+        /*animation*/
+        if (addAnimation !== null) {
+            addAnimation(arrAnimation);
+        }
+        /*scroll header*/
+        scrollHeader(header);
+
+        /*scroll quarters content*/
+        if (scrollAnimation.length > 0) {
+            for (let i = 0; i < scrollAnimation.length; i++) {
+                scrollFunc(scrollAnimation, heightWindow);
+            }
+        }
+    });
+
+    /*Set map*/
+
+    if (document.querySelector('#map') !== null) {
+        const localScript = document.createElement('script');
+        const serverScript = document.createElement('script');
+
+        localScript.setAttribute('defer', 'defer');
+        serverScript.setAttribute('defer', 'defer');
+
+        localScript.setAttribute('src', 'dist/js/map-google.js');
+        serverScript.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDzrDLaTqQRrY8xss7UUDtLQxJ7S2fajj4&callback=initMap');
+        document.body.appendChild(serverScript);
+        document.body.appendChild(localScript);
     }
 
 

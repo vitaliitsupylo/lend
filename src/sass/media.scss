@@ -1,0 +1,74 @@
+/*HOVER----------------------------------------*/
+@media only screen and (min-width: 1150px) {
+  /*header*/
+  .call {
+    &:hover {
+      i {
+        background-color: $blue-color;
+        color: #fff;
+      }
+      .text_popup {
+        opacity: 1;
+        left: rem(59px);
+        width: rem(240px);
+      }
+    }
+  }
+  .nav {
+    li {
+      &:hover {
+        .line_hover {
+          transition: opacity 0s, width .4s;
+          width: 100%;
+          opacity: 1;
+        }
+        .more_nav {
+          transition: opacity .3s, visibility .3s;
+          opacity: 1;
+          visibility: visible;
+          li {
+            opacity: 1;
+            transition: opacity .3s .75s;
+            a {
+              transition: color .4s, left .4s .75s;
+              left: 0;
+            }
+          }
+          &::after {
+            transition: width .4s .38s;
+            width: 100%;
+            opacity: 1;
+          }
+        }
+      }
+      .more_nav {
+        li {
+          a {
+            left: rem(-20px);
+            transition: color .4s, left .3s;
+          }
+          .more_nav_hover {
+            position: absolute;
+            left: 0;
+            top: -5%;
+            z-index: 1;
+            display: block;
+            width: 0;
+            height: 110%;
+            transition: width .4s;
+            background-image: linear-gradient(to right, rgba(236, 240, 253, 0.25) 0%, #eff4fd 48%, rgba(236, 241, 252, 0.25) 100%);
+          }
+          &:hover {
+            .more_nav_hover {
+              width: 100%;
+            }
+            a {
+              color: #314981;
+            }
+          }
+        }
+      }
+    }
+  }
+  /*end header*/
+}

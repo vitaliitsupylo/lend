@@ -1,16 +1,14 @@
 var map;
 var mapBlock = document.getElementById('map');
 var footerContact = document.querySelector('.footer_contact');
-var iconUrl = mapBlock.getAttribute('data-icon');
 if (footerContact !== null) {
     mapBlock.style.height = footerContact.clientHeight + "px";
-
 }
 
 function initMap() {
     map = new google.maps.Map(mapBlock, {
-        zoom: 18,
-        center: new google.maps.LatLng(50.450003, 30.518566),
+        zoom: 17,
+        center: new google.maps.LatLng(50.4656, 30.5128),
         mapTypeId: 'roadmap',
         styles: [
             {
@@ -159,14 +157,14 @@ function initMap() {
 
     var features = [
         {
-            position: new google.maps.LatLng(50.450003, 30.518566)
+            position: new google.maps.LatLng(50.464857, 30.515719)
         }
     ];
 
     features.forEach(function (feature) {
         let marker = new google.maps.Marker({
             position: feature.position,
-            icon: iconUrl,
+            icon: 'img/svg/map.svg',
             map: map
         });
     });

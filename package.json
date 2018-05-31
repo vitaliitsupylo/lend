@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "vanilla-text-mask": "^5.0.1",
-    "xhr-promise": "^2.0.0"
+    "xhr-promise": "^2.0.0",
+    "video.js": "^6.6.0",
+    "videojs-youtube": "^2.4.1"
   }
 }
